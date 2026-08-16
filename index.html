@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Your 3D Printing Business | Negosyo Bundles</title>
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <meta name="description"
+    content="Start your own 3D printing reselling business with our ready-to-sell negosyo bundles.">
+
+  <style>
+  
+  /* CLICKABLE PRODUCT IMAGE */
+.clickable-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.clickable-image:hover {
+  transform: scale(1.05);
+}
+
+
+/* IMAGE LIGHTBOX */
+.image-lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  cursor: zoom-out;
+}
+
+.image-lightbox.active {
+  display: flex;
+}
+
+.image-lightbox img {
+  max-width: 95%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 10px;
+  cursor: default;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 45px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-lightbox:hover {
+  opacity: 0.7;
+}
+    /* =========================
+       GENERAL
+    ========================== */
+    :root {
+      --primary: #6c4df6;
+      --primary-dark: #5035d4;
+      --dark: #18181b;
+      --text: #52525b;
+      --light: #f8f8fb;
+      --white: #ffffff;
+      --border: #e4e4e7;
+      --success: #16a34a;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background: var(--white);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 2rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text);
+      max-width: 650px;
+      margin: 0 auto 45px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .logo-placeholder {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a {
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+    .hero {
+      padding: 90px 0;
+      background:
+        radial-gradient(circle at top right, rgba(108, 77, 246, 0.15), transparent 35%),
+        var(--light);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(108, 77, 246, 0.1);
+      color: var(--primary);
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 4.3rem);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero p {
+      color: var(--text);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin-bottom: 25px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-image {
+      min-height: 420px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(135deg, #dcd7ff, #f3f1ff);
+      color: var(--primary-dark);
+      font-weight: bold;
+    }
+
+    /* =========================
+       TRUST BAR
+    ========================== */
+    .trust-bar {
+      padding: 25px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 1.3rem;
+    }
+
+    .trust-item span {
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       BUNDLES
+    ========================== */
+    .bundles {
+      background: var(--white);
+    }
+
+    .bundle-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .bundle-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: 0.3s;
+      background: white;
+    }
+
+    .bundle-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .bundle-image {
+      height: 230px;
+      background: #eeeeff;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .bundle-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .bundle-content {
+      padding: 25px;
+    }
+
+    .bundle-content h3 {
+      margin-bottom: 8px;
+      font-size: 1.35rem;
+    }
+
+    .bundle-content p {
+      color: var(--text);
+      margin-bottom: 15px;
+    }
+
+    .price {
+      color: var(--primary);
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .bundle-list {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .bundle-list li {
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .bundle-list li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    /* =========================
+       WHY CHOOSE US
+    ========================== */
+    .features {
+      background: var(--light);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 28px;
+      border-radius: 15px;
+      border: 1px solid var(--border);
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(108, 77, 246, 0.1);
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    /* =========================
+       HOW TO ORDER
+    ========================== */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      position: relative;
+      padding: 25px;
+      border-radius: 15px;
+      border: 1px solid var(--border);
+      background: white;
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .step p {
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    /* =========================
+       PAYMENT & SHIPPING
+    ========================== */
+    .terms {
+      background: var(--light);
+    }
+
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .terms-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+    }
+
+    .terms-card h2 {
+      margin-bottom: 18px;
+    }
+
+    .terms-card ul {
+      padding-left: 20px;
+    }
+
+    .terms-card li {
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    /* =========================
+       PAYMENT
+    ========================== */
+    .payment-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .qr-box {
+      border: 2px dashed var(--border);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      background: var(--light);
+    }
+
+    .qr-placeholder {
+      width: 250px;
+      height: 250px;
+      max-width: 100%;
+      margin: auto;
+      background: white;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: var(--text);
+    }
+
+    .payment-details h3 {
+      margin-bottom: 15px;
+    }
+
+    .payment-info {
+      background: var(--light);
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .payment-info span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .payment-info strong {
+      font-size: 1rem;
+    }
+
+    /* =========================
+       FAQ
+    ========================== */
+    .faq-list {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    details {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    details p {
+      color: var(--text);
+      margin-top: 12px;
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+    .contact {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .contact p {
+      color: #c5c5cc;
+      max-width: 650px;
+      margin: 0 auto 25px;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--dark);
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+    footer {
+      background: #101012;
+      color: #a1a1aa;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       MOBILE ORDER BUTTON
+    ========================== */
+    .mobile-order {
+      display: none;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .payment-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bundle-grid,
+      .feature-grid,
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        padding: 20px 5%;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: 60px 0;
+      }
+
+      .bundle-grid,
+      .feature-grid,
+      .steps,
+      .terms-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 60px 0;
+      }
+
+      .hero-image,
+      .hero-image img {
+        height: 300px;
+        min-height: 300px;
+      }
+
+      .trust-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .mobile-order {
+        display: block;
+        position: fixed;
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        z-index: 2000;
+        text-align: center;
+        box-shadow: var(--shadow);
+      }
+
+      footer {
+        padding-bottom: 85px;
+      }
+    }
+	
+	/* =========================
+   SHIPPING RATES
+========================= */
+
+.shipping-rates {
+  background: var(--white);
+}
+
+.shipping-note {
+  max-width: 900px;
+  margin: 0 auto 25px;
+  padding: 18px 20px;
+  background: #fff8e6;
+  border-left: 4px solid #f59e0b;
+  border-radius: 10px;
+  color: #52525b;
+}
+
+.shipping-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  margin-bottom: 35px;
+}
+
+.shipping-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 750px;
+  background: white;
+}
+
+.shipping-table th {
+  background: var(--primary);
+  color: white;
+  padding: 16px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.shipping-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.shipping-table tr:last-child td {
+  border-bottom: none;
+}
+
+.shipping-table tbody tr:hover {
+  background: var(--light);
+}
+
+.shipping-example-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.shipping-example-card {
+  padding: 25px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: white;
+}
+
+.shipping-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.shipping-example-card h3 {
+  margin-bottom: 8px;
+}
+
+.shipping-example-card p {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.shipping-disclaimer {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--light);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+
+/* MOBILE */
+@media (max-width: 700px) {
+
+  .shipping-example-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.business-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.gcash-payment {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.gcash-logo {
+  width: 70px;
+  height: auto;
+}
+
+.bank-payment {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.bank-logo {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+
+.bank-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.bank-details span {
+  margin-top: 8px;
+}
+
+.bank-details strong {
+  font-weight: bold;
+}
+}
+.qr-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.qr-box {
+  text-align: center;
+}
+
+/* ================================
+   CUSTOMER REVIEWS
+================================ */
+
+.reviews-section {
+  padding: 80px 0;
+  overflow: hidden;
+  background: #f8f9fc;
+}
+
+.reviews-header {
+  text-align: center;
+  padding: 0 20px;
+  margin-bottom: 40px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.reviews-header h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.reviews-header p {
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.reviews-slider {
+  width: 100%;
+  overflow: hidden;
+}
+
+.reviews-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: scrollReviews 35s linear infinite;
+}
+
+.review-card {
+  width: 320px;
+  min-height: 230px;
+  padding: 25px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.stars {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.review-text {
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 95px;
+}
+
+.review-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.review-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.review-footer strong,
+.review-footer span {
+  display: block;
+}
+
+.review-footer span {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: 3px;
+}
+
+
+/* AUTO SLIDING ANIMATION */
+
+@keyframes scrollReviews {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* PAUSE WHEN HOVERING */
+
+.reviews-track:hover {
+  animation-play-state: paused;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .reviews-section {
+    padding: 60px 0;
+  }
+
+  .reviews-header h2 {
+    font-size: 28px;
+  }
+
+  .review-card {
+    width: 280px;
+  }
+
+}
+
+.bundle-note {
+  margin-top: 20px;
+  padding: 12px 15px;
+  font-size: 13px;
+  line-height: 1.6;
+  background: #f5f5f5;
+  border-left: 4px solid #333;
+  border-radius: 5px;
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header>
+    <div class="container navbar">
+
+      <a href="#home" class="logo">
+        <img src="./logo.png" alt="Your Business Logo" class="business-logo">
+        <span>Bree&Bia Arts and Crafts</span>
+      </a>
+
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+      <nav id="navMenu">
+        <a href="#bundles">Bundles</a>
+        <a href="#how-to-order">How to Order</a>
+        <a href="#terms">Terms</a>
+        <a href="#payment">Payment</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn btn-primary">Order Now</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+
+      <div>
+        <div class="badge">✨ READY-TO-SELL 3D PRINTED PRODUCTS</div>
+
+        <h1>
+          Start Your Own <span>3D Printing Business</span> With Our Negosyo Bundles
+        </h1>
+
+        <p>
+          Get ready-to-sell 3D printed products perfect for resellers, online
+          sellers, school events, giveaways, and small businesses.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#bundles" class="btn btn-primary">View Negosyo Bundles</a>
+          <a href="#contact" class="btn btn-outline">Inquire Now</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+
+        <!-- REPLACE THIS WITH YOUR ACTUAL PRODUCT IMAGE -->
+        <!-- Example:
+        <img src="images/hero-products.jpg" alt="3D Printed Products">
+        -->
+
+        <div class="image-placeholder">
+          <img src="./product1.png" alt="negosyo-bundle-1">
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       TRUST BAR
+  ========================== -->
+  <section class="trust-bar">
+    <div class="container trust-grid">
+
+      <div class="trust-item">
+        <strong>Customizable</strong>
+        <span>Products for your customers</span>
+      </div>
+
+      <div class="trust-item">
+        <strong>Bulk Orders</strong>
+        <span>Perfect for resellers</span>
+      </div>
+
+      <div class="trust-item">
+        <strong>Nationwide</strong>
+        <span>Shipping available</span>
+      </div>
+
+      <div class="trust-item">
+        <strong>Made to Order</strong>
+        <span>Quality 3D printed products</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       NEGOSYO BUNDLES
+  ========================== -->
+  <section class="bundles" id="bundles">
+
+    <div class="container">
+
+      <h2 class="section-title">Our Negosyo Bundles</h2>
+
+      <p class="section-subtitle">
+        Choose a bundle that fits your business. Check our products,
+        quantities, and prices below with actual packages.
+      </p>
+
+      <div class="bundle-grid">
+
+        <!-- BUNDLE 1 -->
+			<!-- BUNDLE 1 -->
+		<div class="bundle-card">
+
+			<div class="bundle-image">
+			<img 
+				src="./product2.png" 
+				alt="Negosyo Bundle 1"
+				class="clickable-image"
+				onclick="openImage(this.src)"
+				>
+				</div>
+
+			<div class="bundle-content">
+
+			<h3>Starter Bundle</h3>
+
+    <p>
+      A great option for customers who want to start selling 3D printed products.
+    </p>
+
+    <div class="price">₱999</div>
+
+    <ul class="bundle-list">
+      <li>30 Ready-to-Sell Clickers</li>
+      <li>Modular Design</li>
+	   <li>1 color per bundle</li>
+	   <li><strong>YES</strong> to choosing letters</li>
+      <li>30PCS Individual Packaging</li>
+	  <li>7 days production</li>
+    </ul>
+
+    <a href="#contact" class="btn btn-primary">Order This Bundle</a>
+
+  </div>
+</div>
+
+
+        <!-- BUNDLE 2 -->
+			<!-- BUNDLE 2 -->
+		<div class="bundle-card">
+
+			<div class="bundle-image">
+			<img 
+				src="./product3.png" 
+				alt="Negosyo Bundle 3"
+				class="clickable-image"
+				onclick="openImage(this.src)"
+				>
+				</div>
+
+			<div class="bundle-content">
+
+			<h3>Business Bundle</h3>
+
+    <p>
+      More products for growing resellers and online stores.
+    </p>
+
+    <div class="price">₱2499</div>
+
+    <ul class="bundle-list">
+      <li>90 Ready-to-Sell Clickers</li>
+      <li>Modular Design</li>
+	   <li>2 to 3 color per bundle</li>
+	   <li><strong>YES</strong> to choosing letters</li>
+      <li>90PCS Individual Packaging</li>
+	  <li>7 to 10 days production</li>
+    </ul>
+
+    <a href="#contact" class="btn btn-primary">Order This Bundle</a>
+
+  </div>
+</div>
+
+
+        <!-- BUNDLE 3 -->
+        	<div class="bundle-card">
+
+			<div class="bundle-image">
+			<img 
+				src="./product4.png" 
+				alt="Negosyo Bundle 4"
+				class="clickable-image"
+				onclick="openImage(this.src)"
+				>
+				</div>
+
+			<div class="bundle-content">
+
+			<h3>Premuim Custom Bundle</h3>
+
+    <p>
+      Custom Clickers for Events, Birthdays, Giveaways, and More!
+    </p>
+
+    <div class="price">Contact Us</div>
+
+    <ul class="bundle-list">
+      <li>Large Quantity Order (Min. 30pcs)</li>
+	   <li>Send your own logo</li>
+      <li><strong>FREE</strong> 3D model mockup</li>
+	   <li>Choose your own color</li>
+      <li>Individual Packaging</li>
+	   <li><strong>FREE</strong> Custom Backing Paper</li>
+	  <li>7 to 10 days production</li>
+    </ul>
+	<p class="bundle-note">
+  <strong>Note:</strong> 3D-printed items work best with simple designs, text, and shapes.
+  Highly detailed images, photographs, and gradient colors may not be suitable for 3D printing.
+</p>
+
+    <a href="#contact" class="btn btn-primary">Request a Quote</a>
+
+  </div>
+</div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       WHY CHOOSE US
+  ========================== -->
+  <section class="features">
+
+    <div class="container">
+
+      <h2 class="section-title">Why Choose Our Products?</h2>
+
+      <p class="section-subtitle">
+        We help resellers and businesses offer unique, fun, and customizable products.
+      </p>
+
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">🖨️</div>
+          <h3>Quality 3D Printing</h3>
+          <p>Carefully produced products with attention to quality and detail.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Customizable</h3>
+          <p>Offer names, letters, logos, and other personalized designs.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>Bulk Orders</h3>
+          <p>Great pricing and packages for resellers and negosyo owners.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🚚</div>
+          <h3>Shipping Options</h3>
+          <p>Multiple courier and delivery options are available.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       HOW TO ORDER
+  ========================== -->
+  <section id="how-to-order">
+
+    <div class="container">
+
+      <h2 class="section-title">How to Order</h2>
+
+      <p class="section-subtitle">
+        Ordering is easy. Follow these simple steps.
+      </p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Choose a Bundle</h3>
+          <p>Select the bundle or products you want to order.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Send Your Order</h3>
+          <p>Contact us and provide your selected bundle and order details.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Pay the Deposit</h3>
+          <p>Settle the required down payment to confirm your order.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Production & Shipping</h3>
+          <p>We will process your order and arrange shipping once completed.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       TERMS
+  ========================== -->
+  <section class="terms" id="terms">
+
+    <div class="container">
+
+      <h2 class="section-title">Payment & Shipping Terms</h2>
+
+      <p class="section-subtitle">
+        Please read our terms before placing your order.
+      </p>
+
+      <div class="terms-grid">
+
+        <!-- PAYMENT TERMS -->
+        <div class="terms-card">
+
+          <h2>💳 Payment Terms</h2>
+
+          <ul>
+            <li><strong>50% down payment</strong> is required to confirm your order.</li>
+            <li>Production will begin after payment confirmation.</li>
+            <li>The remaining balance must be settled before shipping or delivery.</li>
+            <li>Please send your proof of payment after completing your transaction.</li>
+            <li>Customized and made-to-order items may not be cancelled once production has started.</li>
+          </ul>
+
+        </div>
+
+
+        <!-- SHIPPING TERMS -->
+        <div class="terms-card">
+
+          <h2>🚚 Shipping Terms</h2>
+
+          <ul>
+            <li>Shipping fees are shouldered by the customer.</li>
+            <li>We can arrange shipping through Shopee Checkout or TikTok Shop when applicable.</li>
+            <li>Other courier options may include J&T and SPX.</li>
+            <li>Same-day delivery through Lalamove may be available depending on location.</li>
+            <li>Delivery time may vary depending on the courier and destination.</li>
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+  
+  <!-- =========================
+     SAMPLE SHIPPING RATES
+========================== -->
+<section class="shipping-rates" id="shipping-rates">
+
+  <div class="container">
+
+    <h2 class="section-title">Estimated Shipping Rates</h2>
+
+    <p class="section-subtitle">
+      Below are sample shipping estimates for reference only.
+      Actual shipping fees may vary depending on parcel weight, dimensions,
+      destination, courier rates, and applicable surcharges.
+    </p>
+
+    <div class="shipping-note">
+      <strong>📦 Important:</strong>
+      Final shipping cost will be confirmed before shipment.
+      Shipping fees are shouldered by the customer.
+    </div>
+
+    <!-- COURIER TABLE -->
+    <div class="shipping-table-wrapper">
+
+      <table class="shipping-table">
+
+        <thead>
+          <tr>
+            <th>Courier</th>
+            <th>Service / Destination</th>
+            <th>Sample Weight</th>
+            <th>Estimated Rate</th>
+            <th>Delivery Type</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <!-- SPX -->
+          <tr>
+            <td>
+              <strong>SPX Express</strong>
+            </td>
+            <td>Within Metro Manila / Nearby Areas</td>
+            <td>Up to 1 kg</td>
+            <td>₱80 – ₱150*</td>
+            <td>Standard Delivery</td>
+          </tr>
+
+          <tr>
+            <td>
+              <strong>SPX Express</strong>
+            </td>
+            <td>Provincial Areas</td>
+            <td>Up to 1 kg</td>
+            <td>₱120 – ₱250*</td>
+            <td>Standard Delivery</td>
+          </tr>
+
+
+          <!-- J&T -->
+          <tr>
+            <td>
+              <strong>J&T Express</strong>
+            </td>
+            <td>Within Metro Manila / Nearby Areas</td>
+            <td>Up to 1 kg</td>
+            <td>₱100 – ₱180*</td>
+            <td>Standard Delivery</td>
+          </tr>
+
+          <tr>
+            <td>
+              <strong>J&T Express</strong>
+            </td>
+            <td>Provincial Areas</td>
+            <td>Up to 1 kg</td>
+            <td>₱150 – ₱300*</td>
+            <td>Standard Delivery</td>
+          </tr>
+
+
+          <!-- LALAMOVE -->
+          <tr>
+            <td>
+              <strong>Lalamove</strong>
+            </td>
+            <td>Nearby / Same-Day Delivery</td>
+            <td>Small Parcel</td>
+            <td>Starts at ₱49*</td>
+            <td>Same-Day Delivery</td>
+          </tr>
+
+          <tr>
+            <td>
+              <strong>Lalamove</strong>
+            </td>
+            <td>Longer Distance Delivery</td>
+            <td>Depends on Vehicle</td>
+            <td>Based on App Quote*</td>
+            <td>Same-Day Delivery</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- SHIPPING EXAMPLES -->
+    <div class="shipping-example-grid">
+
+      <div class="shipping-example-card">
+        <div class="shipping-icon">🏙️</div>
+        <h3>Nearby Areas</h3>
+        <p>
+          For nearby locations, Lalamove may be available for faster
+          same-day delivery. Rates depend on distance and the vehicle selected.
+        </p>
+      </div>
+
+      <div class="shipping-example-card">
+        <div class="shipping-icon">🚚</div>
+        <h3>Nationwide Shipping</h3>
+        <p>
+          J&T Express and SPX Express may be used for orders outside
+          the same-day delivery coverage area.
+        </p>
+      </div>
+
+      <div class="shipping-example-card">
+        <div class="shipping-icon">⚖️</div>
+        <h3>Weight & Size</h3>
+        <p>
+          Larger or heavier parcels may have higher shipping fees.
+          Final rates will be based on the actual packaged parcel.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- DISCLAIMER -->
+    <div class="shipping-disclaimer">
+
+      <p>
+        <strong>*Shipping Rate Disclaimer:</strong>
+        The prices shown above are sample estimates only and are not guaranteed.
+        Actual courier charges may change depending on the pickup location,
+        delivery destination, parcel weight, dimensions, current courier rates,
+        traffic, demand, surcharges, and other applicable fees.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+  <!-- =========================
+       PAYMENT DETAILS
+  ========================== -->
+  <section id="payment">
+
+    <div class="container">
+
+      <h2 class="section-title">Where to Pay</h2>
+
+      <p class="section-subtitle">
+        Please use the payment details below. Replace all placeholders with your actual account information.
+      </p>
+
+      <div class="payment-grid">
+
+        <div class="qr-container">
+
+  <!-- GCASH QR -->
+  <div class="qr-box">
+    <div class="qr-placeholder">
+      <img src="./gcash-qr.png" alt="GCash QR Code">
+    </div>
+    <h3>Scan to Pay via GCash</h3>
+  </div>
+
+  <!-- METROBANK QR -->
+  <div class="qr-box">
+    <div class="qr-placeholder">
+      <img src="./metrobank-qr.png" alt="Metrobank QR Code">
+    </div>
+    <h3>Scan to Pay via Metrobank</h3>
+  </div>
+
+</div>
+		
+        <!-- PAYMENT DETAILS -->
+        <div class="payment-details">
+
+          <h3>Payment Details</h3>
+
+         <div class="payment-info gcash-payment">
+  <img src="./gcash-logo.png" alt="GCash" class="gcash-logo">
+
+  <div>
+    <span>GCash Account Name</span>
+    <strong>RACEL ATIENZA</strong>
+
+    <span>GCash Number</span>
+    <strong>0999 333 2076</strong>
+  </div>
+</div>
+
+          <br>
+
+          <h3>Bank Transfer</h3>
+
+         <div class="payment-info bank-payment">
+  <img src="./metrobank-logo.png" alt="Metrobank" class="bank-logo">
+
+  <div class="bank-details">
+    <span>Bank Name</span>
+    <strong>METROBANK</strong>
+
+    <span>Account Name</span>
+    <strong>RACEL VILLANUEVA ATIENZA</strong>
+
+    <span>Account Number</span>
+    <strong>362 336 217 6949</strong>
+  </div>
+</div>
+
+          <p style="color:#52525b; margin-top: 18px;">
+            <strong>Important:</strong> Please send your proof of payment to us after completing your transaction.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+<section class="reviews-section" id="reviews">
+
+  <div class="reviews-header">
+    <span class="section-tag">CUSTOMER FEEDBACK</span>
+    <h2>Loved by Our Customers ❤️</h2>
+    <p>See what our customers say about our products and services!</p>
+  </div>
+
+  <div class="reviews-slider">
+
+    <div class="reviews-track">
+
+      <div class="review-card review-image-card">
+        <img src="./review1.png" alt="Customer Review 1">
+      </div>
+
+      <div class="review-card review-image-card">
+        <img src="./review2.png" alt="Customer Review 2">
+      </div>
+
+      <div class="review-card review-image-card">
+        <img src="./review3.png" alt="Customer Review 3">
+      </div>
+
+      <div class="review-card review-image-card">
+        <img src="./review4.png" alt="Customer Review 4">
+      </div>
+
+      <!-- Duplicate images for continuous animation -->
+
+      <div class="review-card review-image-card">
+        <img src="./review1.png" alt="Customer Review 1">
+      </div>
+
+      <div class="review-card review-image-card">
+        <img src="./review2.png" alt="Customer Review 2">
+      </div>
+
+      <div class="review-card review-image-card">
+        <img src="./review3.png" alt="Customer Review 3">
+      </div>
+
+      <div class="review-card review-image-card">
+        <img src="./review4.png" alt="Customer Review 4">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- =========================
+       FAQ
+  ========================== -->
+  <section id="faq">
+
+    <div class="container">
+
+      <h2 class="section-title">Frequently Asked Questions</h2>
+
+      <div class="faq-list">
+
+        <details>
+          <summary>What is the minimum order?</summary>
+          <p>
+            Minimum order may vary depending on the product or bundle. Contact us for more information.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I customize the products?</summary>
+          <p>
+            Yes. Selected products can be customized with names, letters, logos, and other designs.
+          </p>
+        </details>
+
+        <details>
+          <summary>How long is the production time?</summary>
+          <p>
+            Production time depends on the quantity, design, and current order queue. Contact us for an estimated schedule.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do you ship nationwide?</summary>
+          <p>
+            Yes. Shipping options are available depending on your location and preferred courier.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I order for resale?</summary>
+          <p>
+            Yes! Our Negosyo Bundles are designed for resellers and customers who want ready-to-sell products.
+          </p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================
+       CONTACT
+  ========================== -->
+  <section class="contact" id="contact">
+
+    <div class="container">
+
+      <h2>Ready to Start Your 3D Printing Negosyo?</h2>
+
+      <p>
+        Send us a message today and let us help you choose the right products or bundle for your business.
+      </p>
+
+      <div class="contact-buttons">
+
+        <!-- REPLACE # WITH YOUR ACTUAL LINKS -->
+
+        <a href="https://www.facebook.com/breeandbia" 
+   class="btn btn-white"
+   target="_blank"
+   rel="noopener noreferrer">
+  💬 Message us on Facebook
+</a>
+
+        <a href="https://ph.shp.ee/ePgsFzdu" 
+   class="btn btn-white"
+   target="_blank"
+   rel="noopener noreferrer">
+  🛍️ Visit our Shopee Store
+</a>
+
+      <a href="https://www.tiktok.com/@breeandbia?_r=1&_d=secCgYIASAHKAESPgo8hEaBr2Cg2xjZWb34MjsYspiN%2FkOpfdJTiD0aIF0cYILvcbwEuXq051PLT5TeNMXH%2BrNn3qu2kTqoRUt2GgA%3D&_svg=1&checksum=9aeb1ff7fc5dbd3bedda77e08205e739ffbb5ce8bd5322efac4042d461fa39f9&item_author_type=1&reflow_sign_scene=7&rgssign=8.1.7mzRkOCz1bOmkeL9330AYg&sec_uid=MS4wLjABAAAArIWYDmmUwK715XjhHVWMJJ-fJIwJXRub4JfH10RFMUE7Ml6XlBU0-RMS4DVxbW3a&sec_user_id=MS4wLjABAAAArIWYDmmUwK715XjhHVWMJJ-fJIwJXRub4JfH10RFMUE7Ml6XlBU0-RMS4DVxbW3a&share_app_id=1180&share_author_id=6884889174840427521&share_link_id=0F1A9ED9-4E2F-49AC-8F21-852424EBB632&share_region=PH&share_scene=1&sharer_language=en&social_share_type=4&source=h5_t&timestamp=1786862461&tt_from=copy&u_code=df3k5ec4ihm507&ug_btm=b8727%2Cb0&user_id=6884889174840427521&utm_campaign=client_share&utm_medium=ios&utm_source=copy" 
+   class="btn btn-white"
+   target="_blank"
+   rel="noopener noreferrer">
+  🎵 Visit our TikTok Account
+</a>
+
+      </div>
+
+      <p style="margin-top:30px;">
+        <strong>Business Name:</strong> Bree&Bia Arts and Crafts
+        <br>
+        <strong>Email:</strong> breeandbiaartsandcrafts@gmail.com
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer>
+    <p>
+      © <span id="year"></span> Bree&Bia Arts and Crafts. All Rights Reserved.
+    </p>
+  </footer>
+
+
+  <!-- MOBILE ORDER BUTTON -->
+  <a href="#contact" class="btn btn-primary mobile-order">
+    Order / Inquire Now
+  </a>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+  
+  function openImage(imageSrc) {
+  const lightbox = document.getElementById("imageLightbox");
+  const fullImage = document.getElementById("fullImage");
+
+  fullImage.src = imageSrc;
+  lightbox.classList.add("active");
+}
+
+function closeImage() {
+  document.getElementById("imageLightbox").classList.remove("active");
+}
+
+    // Automatically update copyright year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById("navMenu").classList.toggle("active");
+    }
+
+  </script>
+<!-- IMAGE LIGHTBOX -->
+<div id="imageLightbox" class="image-lightbox" onclick="closeImage()">
+
+  <span class="close-lightbox">&times;</span>
+
+  <img id="fullImage" src="" alt="Full Product Image">
+
+</div>
+</body>
+</html>
