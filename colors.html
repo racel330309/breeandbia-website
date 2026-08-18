@@ -1,0 +1,1008 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Available Colors | Bree&Bia Arts and Crafts</title>
+  <link rel="icon" type="image/png" href="./favicon.png">
+
+  <meta name="description"
+    content="Browse the available colors for our custom 3D printed products.">
+
+  <style>
+    /* =========================
+       GENERAL - MATCHES INDEX.HTML
+    ========================== */
+    :root {
+      --primary: #6c4df6;
+      --primary-dark: #5035d4;
+      --dark: #18181b;
+      --text: #52525b;
+      --light: #f8f8fb;
+      --white: #ffffff;
+      --border: #e4e4e7;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background: var(--white);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       HEADER
+    ========================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .business-logo {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a {
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+
+    /* =========================
+       PAGE HERO
+    ========================== */
+    .page-hero {
+      padding: 80px 0 70px;
+      text-align: center;
+      background:
+        radial-gradient(circle at top right, rgba(108, 77, 246, 0.15), transparent 35%),
+        var(--light);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(108, 77, 246, 0.1);
+      color: var(--primary);
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .page-hero h1 span {
+      color: var(--primary);
+    }
+
+    .page-hero p {
+      max-width: 650px;
+      margin: auto;
+      color: var(--text);
+      font-size: 1.05rem;
+    }
+
+
+    /* =========================
+       COLOR SECTION
+    ========================== */
+    .colors-section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 2rem;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text);
+      max-width: 650px;
+      margin: 0 auto 45px;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    .color-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--white);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .color-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: var(--primary);
+    }
+
+    .color-preview {
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .color-card-name {
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .color-code {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: normal;
+      color: var(--text);
+      margin-top: 3px;
+    }
+
+
+    /* =========================
+       COLOR PREVIEWS
+       CHANGE THESE COLORS OR
+       REPLACE WITH IMAGES
+    ========================== */
+
+    .black {
+      background: #181818;
+    }
+
+    .white {
+      background: #f8f8f8;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .red {
+      background: #dc2626;
+    }
+
+    .blue {
+      background: #2563eb;
+    }
+
+    .yellow {
+      background: #facc15;
+    }
+
+    .green {
+      background: #16a34a;
+    }
+
+    .orange {
+      background: #f97316;
+    }
+
+    .purple {
+      background: #7c3aed;
+    }
+
+    .pink {
+      background: #ec4899;
+    }
+
+    .brown {
+      background: #854d0e;
+    }
+
+    .gray {
+      background: #71717a;
+    }
+
+    .silver {
+      background: linear-gradient(
+        135deg,
+        #d4d4d8,
+        #71717a,
+        #e4e4e7
+      );
+    }
+
+    .gold {
+      background: linear-gradient(
+        135deg,
+        #facc15,
+        #a16207,
+        #fde68a
+      );
+    }
+
+    .light-blue {
+      background: #38bdf8;
+    }
+
+    .light-green {
+      background: #86efac;
+    }
+
+
+    /* =========================
+       IMPORTANT NOTE
+    ========================== */
+    .color-note {
+      max-width: 850px;
+      margin: 50px auto 0;
+      padding: 25px;
+      border-radius: 15px;
+      background: var(--light);
+      border-left: 5px solid var(--primary);
+    }
+
+    .color-note h3 {
+      margin-bottom: 8px;
+    }
+
+    .color-note p {
+      color: var(--text);
+    }
+
+
+    /* =========================
+       CALL TO ACTION
+    ========================== */
+    .cta {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 70px 0;
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: #c5c5cc;
+      margin-bottom: 25px;
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--dark);
+    }
+
+    .btn-white:hover {
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================== */
+    footer {
+      background: #101012;
+      color: #a1a1aa;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.9rem;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+    @media (max-width: 900px) {
+
+      .color-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+    }
+
+    @media (max-width: 600px) {
+
+      .color-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .page-hero {
+        padding: 60px 0;
+      }
+
+      .colors-section {
+        padding: 60px 0;
+      }
+
+      .color-preview {
+        height: 120px;
+      }
+
+    }
+	
+	.color-preview {
+  height: 150px;
+  overflow: hidden;
+  background: #f8f8fb;
+}
+
+.color-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* CLICKABLE COLOR IMAGE */
+
+.color-clickable {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.color-clickable:hover {
+  transform: scale(1.05);
+}
+
+
+/* COLOR IMAGE LIGHTBOX */
+
+.color-lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  cursor: zoom-out;
+}
+
+.color-lightbox.active {
+  display: flex;
+}
+
+.color-lightbox img {
+  max-width: 95%;
+  max-height: 90vh;
+
+  object-fit: contain;
+
+  border-radius: 12px;
+
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+
+  cursor: default;
+}
+
+.close-color-lightbox {
+  position: absolute;
+
+  top: 20px;
+  right: 30px;
+
+  color: white;
+
+  font-size: 45px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  line-height: 1;
+}
+
+.close-color-lightbox:hover {
+  opacity: 0.7;
+}
+
+  </style>
+</head>
+
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header>
+
+    <div class="container navbar">
+
+      <a href="index.html" class="logo">
+
+        <!-- CHANGE logo.png TO YOUR ACTUAL LOGO FILE -->
+        <img
+          src="./logo.png"
+          alt="Bree&Bia Arts and Crafts"
+          class="business-logo"
+        >
+
+        <span>Bree&Bia Arts and Crafts</span>
+
+      </a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#bundles">Bundles</a>
+        <a href="colors.html">Available Colors</a>
+        <a href="index.html#contact" class="btn btn-primary">
+          Order Now
+        </a>
+      </nav>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+  <section class="page-hero">
+
+    <div class="container">
+
+      <div class="badge">
+        🎨 3D PRINT FILAMENT COLORS
+      </div>
+
+      <h1>
+        Available <span>Colors</span>
+      </h1>
+
+      <p>
+        Choose from our available filament colors for your customized
+        3D printed products. Color availability may change depending
+        on our current filament stock.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       COLOR SELECTION
+  ========================== -->
+  <section class="colors-section">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Choose Your Color
+      </h2>
+
+      <p class="section-subtitle">
+        Please select your preferred color when placing your order.
+        Actual printed colors may slightly vary depending on lighting,
+        screen settings, and filament material.
+      </p>
+
+
+      <div class="color-grid">
+
+
+        <!-- COLOR 1 -->
+        <div class="color-card">
+			<div class="color-preview">
+		<img src="./sunlu-black.png" alt="Black 3D Printing Filament" class="color-clickable" onclick="openColorImage(this.src, this.alt)">
+		</div>
+
+			<div class="color-card-name">
+				Black
+			<span class="color-code">Classic Black</span>
+		</div>
+	</div>
+
+
+        <!-- COLOR 2 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-white.png" alt="White 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    White
+    <span class="color-code">Classic White</span>
+  </div>
+</div>
+
+        <!-- COLOR 3 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-red.png" alt="Red 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Red
+    <span class="color-code">Classic Red</span>
+  </div>
+</div>
+
+
+       <!-- COLOR 4 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-blue.png" alt="Blue 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Blue
+    <span class="color-code">Klein Blue</span>
+  </div>
+</div>
+
+
+     
+        <!-- COLOR 5 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-yellow.png" alt="Yellow 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Yellow
+    <span class="color-code">Classic Yellow</span>
+  </div>
+</div>
+
+
+        <!-- COLOR 6 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-green.png" alt="Green 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Green
+    <span class="color-code">Classic Green</span>
+  </div>
+</div>
+
+        <!-- COLOR 7 -->
+      
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-orange.png" alt="Orange 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Orange
+    <span class="color-code">Bright Orange</span>
+  </div>
+</div>
+
+
+        <!-- COLOR 8 -->
+        <div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-lavender-purple.png" alt="Lavender Purple 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Lavender Purple
+    <span class="color-code">Lavender Purple</span>
+  </div>
+</div>
+
+
+        <!-- COLOR 9 -->
+        
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-sakura-pink.png" alt="Sakura Pink 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Sakura Pink
+    <span class="color-code">Sakura Pink</span>
+  </div>
+</div>
+
+	 <!-- COLOR 10 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-olive-green.png" alt="Olive Green 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Olive Green
+    <span class="color-code">Olive Green</span>
+  </div>
+</div>
+
+<!-- COLOR 11 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-cyan.png" alt="Cyan 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Cyan
+    <span class="color-code">Cyan</span>
+  </div>
+</div>
+
+<!-- COLOR 12 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-gray.png" alt="Gray 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Gray
+    <span class="color-code">Gray</span>
+  </div>
+</div>
+
+
+<!-- COLOR 13 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-ocean-blue.png" alt="Ocean Blue 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Ocean Blue
+    <span class="color-code">Ocean Blue</span>
+  </div>
+</div>
+
+<!-- COLOR 14 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-magenta.png" alt="Magenta 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Magenta
+    <span class="color-code">Magenta</span>
+  </div>
+</div>
+
+<!-- COLOR 15 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./sunlu-beige.png" alt="Beige 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Beige
+    <span class="color-code">Beige</span>
+  </div>
+</div>
+
+<!-- COLOR 16 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./panochrama-arctic-teal.png" alt="Arctic Teal 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Arctic Teal
+    <span class="color-code">Arctic Teal</span>
+  </div>
+</div>
+
+<!-- COLOR 17 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./panochrama-pastel-candy.png" alt="Pastel Candy 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Pastel Candy
+    <span class="color-code">Pastel Candy</span>
+  </div>
+</div>
+
+<!-- COLOR 18 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./panochrama-pastel-mint.png" alt="Pastel Mint 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Pastel Mint
+    <span class="color-code">Pastel Mint</span>
+  </div>
+</div>
+
+<!-- COLOR 19 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./panochrama-muted-teracotta.png" alt="Muted Terracotta 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Muted Terracotta
+    <span class="color-code">Muted Terracotta</span>
+  </div>
+</div>
+
+
+<!-- COLOR 20 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./panochrama-lotus-pink.png" alt="Lotus Pink 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Lotus Pink
+    <span class="color-code">Lotus Pink</span>
+  </div>
+</div>
+
+      <!-- COLOR 21 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./panchroma-muted-green.png" alt="Panchroma Muted Green 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Panchroma Muted Green
+    <span class="color-code">Muted Green</span>
+  </div>
+</div>
+
+<!-- COLOR 22 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./panchroma-muted-red.png" alt="Panchroma Muted Red 3D Printing Filament" class="color-clickable"
+onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Panchroma Muted Red
+    <span class="color-code">Muted Red</span>
+  </div>
+</div>
+
+<!-- COLOR 23 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./panchroma-pastel-candy.png" alt="Panchroma Pastel Candy 3D Printing Filament" class="color-clickable" onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Panchroma Pastel Candy
+    <span class="color-code">Pastel Candy</span>
+  </div>
+</div>
+
+<!-- COLOR 24 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./panchroma-pastel-periwinkle.png" alt="Pastel Periwinkle 3D Printing Filament" class="color-clickable" onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Pastel Periwinkle
+    <span class="color-code">Pastel Periwinkle</span>
+  </div>
+</div>
+
+<!-- COLOR 25 -->
+<div class="color-card">
+  <div class="color-preview">
+    <img src="./panchroma-pastel-peach.png" alt="Panchroma Pastel Peach 3D Printing Filament" class="color-clickable" onclick="openColorImage(this.src, this.alt)">
+  </div>
+
+  <div class="color-card-name">
+    Panchroma Pastel Peach
+    <span class="color-code">Pastel Peach</span>
+  </div>
+</div>
+
+      </div>
+
+
+      <!-- COLOR AVAILABILITY NOTE -->
+      <div class="color-note">
+
+        <h3>📌 Color Availability Notice</h3>
+
+        <p>
+          Colors displayed on this page are subject to availability.
+          Some colors may temporarily be out of stock. If your selected
+          color is unavailable, we will contact you and provide available
+          alternatives before proceeding with your order.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CTA
+  ========================== -->
+  <section class="cta">
+
+    <div class="container">
+
+      <h2>Ready to Place Your Order?</h2>
+
+      <p>
+        Choose your preferred color and send us your order details.
+      </p>
+
+      <a href="https://www.facebook.com/breeandbia" class="btn btn-white">
+        Order / Inquire Now
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer>
+
+    <p>
+      © <span id="year"></span>
+      Bree&Bia Arts and Crafts. All Rights Reserved.
+    </p>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+	  
+	  function openColorImage(imageSrc, imageAlt) {
+
+  const lightbox = document.getElementById("colorLightbox");
+  const fullImage = document.getElementById("colorFullImage");
+
+  fullImage.src = imageSrc;
+  fullImage.alt = imageAlt;
+
+  lightbox.classList.add("active");
+}
+
+
+function closeColorImage() {
+
+  const lightbox = document.getElementById("colorLightbox");
+
+  lightbox.classList.remove("active");
+
+}
+  </script>
+<!-- COLOR IMAGE LIGHTBOX -->
+
+<div id="colorLightbox" class="color-lightbox" onclick="closeColorImage()">
+
+  <span class="close-color-lightbox">&times;</span>
+
+  <img
+    id="colorFullImage"
+    src=""
+    alt=""
+    onclick="event.stopPropagation()"
+  >
+
+</div>
+</body>
+</html>
+
