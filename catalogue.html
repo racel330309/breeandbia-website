@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Product Catalogue | Bree&Bia Arts and Crafts</title>
+<link rel="icon" type="image/png" href="./favicon.png">
+
+<style>
+:root{
+    --primary:#6c4df6;
+    --primary-dark:#5035d4;
+    --dark:#18181b;
+    --text:#52525b;
+    --light:#f8f8fb;
+    --white:#ffffff;
+    --border:#e4e4e7;
+    --shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--white);
+    color:var(--dark);
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+a{
+    text-decoration:none;
+}
+
+.container{
+    width:min(1120px,90%);
+    margin:auto;
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+}
+
+.navbar{
+    min-height:70px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--dark);
+    font-weight:800;
+}
+
+.business-logo{
+    width:50px;
+    height:50px;
+    object-fit:contain;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:var(--text);
+    font-weight:600;
+}
+
+nav a:hover{
+    color:var(--primary);
+}
+
+/* HERO */
+
+.hero{
+    padding:80px 0;
+    text-align:center;
+    background:
+    radial-gradient(circle at top right, rgba(108,77,246,0.15), transparent 35%),
+    var(--light);
+}
+
+.badge{
+    display:inline-block;
+    background:rgba(108,77,246,0.1);
+    color:var(--primary);
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:.85rem;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.hero h1 span{
+    color:var(--primary);
+}
+
+.hero p{
+    color:var(--text);
+    max-width:700px;
+    margin:auto;
+}
+
+/* SEARCH */
+
+.catalog-tools{
+    padding:40px 0;
+}
+
+.search-box{
+    width:100%;
+    max-width:500px;
+    margin:auto;
+}
+
+.search-box input{
+    width:100%;
+    padding:15px 20px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    font-size:1rem;
+}
+
+/* FILTER */
+
+.filter-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+.filter-btn{
+    padding:10px 18px;
+    border:none;
+    border-radius:30px;
+    background:var(--light);
+    cursor:pointer;
+    font-weight:600;
+}
+
+.filter-btn.active{
+    background:var(--primary);
+    color:white;
+}
+
+/* PRODUCTS */
+
+.products{
+    padding-bottom:80px;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+.product-card{
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    transition:.3s;
+    background:white;
+}
+
+.product-card:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
+}
+
+.product-image{
+    height:240px;
+    overflow:hidden;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    cursor:pointer;
+}
+
+.product-content{
+    padding:20px;
+}
+
+.category{
+    display:inline-block;
+    background:rgba(108,77,246,.1);
+    color:var(--primary);
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:.8rem;
+    margin-bottom:10px;
+}
+
+.product-title{
+    font-size:1.1rem;
+    margin-bottom:10px;
+}
+
+.product-desc{
+    color:var(--text);
+    font-size:.9rem;
+    margin-bottom:15px;
+}
+
+.price{
+    color:var(--primary);
+    font-size:1.4rem;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+.btn{
+    display:inline-block;
+    width:100%;
+    text-align:center;
+    padding:12px;
+    background:var(--primary);
+    color:white;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:var(--primary-dark);
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    z-index:9999;
+    justify-content:center;
+    align-items:center;
+}
+
+.lightbox.active{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:90%;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    background:#101012;
+    color:#a1a1aa;
+    text-align:center;
+    padding:25px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+    .product-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:2rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container navbar">
+
+<a href="index.html" class="logo">
+<img src="./logo.png" class="business-logo">
+<span>Bree&Bia Arts and Crafts</span>
+</a>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="catalogue.html">Catalogue</a>
+<a href="colors.html">Colors</a>
+<a href="index.html#contact">Contact</a>
+</nav>
+
+</div>
+</header>
+
+<section class="hero">
+<div class="container">
+
+<div class="badge">
+🖨️ PRODUCT CATALOGUE
+</div>
+
+<h1>Browse Our <span>Clicker,Flexi,PPOP/KPOP Collection</span></h1>
+  <p>🏪 Perfect for <strong>resellers, small businesses, events, schools, parties & giveaways</strong></p>
+
+</div>
+</section>
+
+<section class="catalog-tools">
+<div class="container">
+
+<div class="search-box">
+<input type="text" placeholder="Search products...">
+</div>
+
+<div class="filter-buttons">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="Clicker">Clicker</button>
+  <button class="filter-btn" data-filter="Flexi">Flexi</button>
+  <button class="filter-btn" data-filter="KPOP/PPOP">KPOP/PPOP</button>
+  
+</div>
+
+</div>
+</section>
+
+<section class="products">
+<div class="container">
+
+<div class="product-grid">
+
+<!-- PRODUCT -->
+<div class="product-card">
+
+<div class="product-image">
+<img src="./star.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Star Clicker
+</h3>
+
+<p class="product-desc">
+  🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./brain.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Brain Clicker
+</h3>
+
+<p class="product-desc">
+  🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./coffee.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Coffee Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./croissant.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Croissant Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./paws.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Paws Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./egg.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Egg Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./needoh.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+NeehDoh Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./sports-ball.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Sports Ball Set Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./bread-toast.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Bread Toast Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./flower-chubby.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Flower Chubby Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./chocolate-bar.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Chocolate Bar Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./gengar.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Gengar Mood Set Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./sanrio.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Sanrio Set Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./matcha.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Matcha Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./flower-clicker-set.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Flower Clicker Set
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./macaroon.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Macaroon Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./dumpling.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Happy Dumpling Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./cute-icecream.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Cute Icecream Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./cute-butter.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Cute Butter Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./fries.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Fries Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./stanley.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Stanley Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./heart-waffle.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Heart Waffle Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./cute-button.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Cute Button Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./gameboy.webp"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Clicker
+</div>
+
+<h3 class="product-title">
+Gameboy Clicker
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./chicken.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Flexi
+</div>
+
+<h3 class="product-title">
+Chicken Flexi Toy Keychain
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./snail.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Flexi
+</div>
+
+<h3 class="product-title">
+Snail Flexi Toy Keychain
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./horse.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Flexi
+</div>
+
+<h3 class="product-title">
+Horse Flexi Toy Keychain
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./rhino.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Flexi
+</div>
+
+<h3 class="product-title">
+Rhino Flexi Toy Keychain
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./crocodile.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Flexi
+</div>
+
+<h3 class="product-title">
+Crocodile Flexi Toy Keychain
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./pig.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Flexi
+</div>
+
+<h3 class="product-title">
+Pig Flexi Toy Keychain
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./shark.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Flexi
+</div>
+
+<h3 class="product-title">
+Shark Flexi Toy Keychain
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./duck.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Flexi
+</div>
+
+<h3 class="product-title">
+Duck Flexi Toy Keychain
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./cat.png"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Flexi
+</div>
+
+<h3 class="product-title">
+Cat Flexi Toy Keychain
+</h3>
+
+<p class="product-desc">
+ 🎨 <strong>Minimum of 3 pcs per design & color</strong><br>
+</p>
+
+<div class="price">
+₱1999 for 30 pcs
+</div>
+
+<a href="index.html#contact" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+
+<!-- DUPLICATE PRODUCT CARDS HERE -->
+
+</div>
+</div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeImage()">
+<span class="close">&times;</span>
+<img id="fullImage">
+</div>
+
+<footer>
+© <span id="year"></span> Bree and Bia Arts and Crafts
+</footer>
+
+<script>
+document.getElementById("year").innerHTML =
+new Date().getFullYear();
+
+function openImage(src){
+    document.getElementById("fullImage").src=src;
+    document.getElementById("lightbox").classList.add("active");
+}
+
+function closeImage(){
+    document.getElementById("lightbox").classList.remove("active");
+}
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+const productCards = document.querySelectorAll(".product-card");
+
+filterButtons.forEach(button => {
+
+  button.addEventListener("click", function() {
+
+    // Remove active from all buttons
+    filterButtons.forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    // Add active to clicked button
+    this.classList.add("active");
+
+    const filter = this.getAttribute("data-filter");
+
+    productCards.forEach(card => {
+
+      const category = card
+        .querySelector(".category")
+        .textContent
+        .trim();
+
+      if (filter === "all" || category === filter) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+
+    });
+
+  });
+
+});
+</script>
+
+</body>
+</html>
+```
