@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Engraving Catalogue | Bree&Bia Arts and Crafts</title>
+<link rel="icon" type="image/png" href="./favicon.png">
+
+<style>
+:root{
+    --primary:#6c4df6;
+    --primary-dark:#5035d4;
+    --dark:#18181b;
+    --text:#52525b;
+    --light:#f8f8fb;
+    --white:#ffffff;
+    --border:#e4e4e7;
+    --shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--white);
+    color:var(--dark);
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+a{
+    text-decoration:none;
+}
+
+.container{
+    width:min(1120px,90%);
+    margin:auto;
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+}
+
+.navbar{
+    min-height:70px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--dark);
+    font-weight:800;
+}
+
+.business-logo{
+    width:50px;
+    height:50px;
+    object-fit:contain;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:var(--text);
+    font-weight:600;
+}
+
+nav a:hover{
+    color:var(--primary);
+}
+
+/* HERO */
+
+.hero{
+    padding:80px 0;
+    text-align:center;
+    background:
+    radial-gradient(circle at top right, rgba(108,77,246,0.15), transparent 35%),
+    var(--light);
+}
+
+.badge{
+    display:inline-block;
+    background:rgba(108,77,246,0.1);
+    color:var(--primary);
+    padding:8px 14px;
+    border-radius:50px;
+    font-size:.85rem;
+    font-weight:bold;
+    margin-bottom:18px;
+}
+
+.hero h1{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.hero h1 span{
+    color:var(--primary);
+}
+
+.hero p{
+    color:var(--text);
+    max-width:750px;
+    margin:auto;
+    line-height:1.6;
+}
+
+/* SEARCH */
+
+.catalog-tools{
+    padding:40px 0;
+}
+
+.search-box{
+    width:100%;
+    max-width:500px;
+    margin:auto;
+}
+
+.search-box input{
+    width:100%;
+    padding:15px 20px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    font-size:1rem;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:var(--primary);
+}
+
+/* FILTER */
+
+.filter-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    margin-top:20px;
+}
+
+.filter-btn{
+    padding:10px 18px;
+    border:none;
+    border-radius:30px;
+    background:var(--light);
+    cursor:pointer;
+    font-weight:600;
+}
+
+.filter-btn:hover{
+    background:#eeeef5;
+}
+
+.filter-btn.active{
+    background:var(--primary);
+    color:white;
+}
+
+/* PRODUCTS */
+
+.products{
+    padding-bottom:80px;
+}
+
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+.product-card{
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    transition:.3s;
+    background:white;
+}
+
+.product-card:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow);
+}
+
+.product-image{
+    height:240px;
+    overflow:hidden;
+    background:#f8f8f8;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.product-card:hover .product-image img{
+    transform:scale(1.03);
+}
+
+.product-content{
+    padding:20px;
+}
+
+.category{
+    display:inline-block;
+    background:rgba(108,77,246,.1);
+    color:var(--primary);
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:.8rem;
+    margin-bottom:10px;
+}
+
+.product-title{
+    font-size:1.1rem;
+    margin-bottom:10px;
+}
+
+.product-desc{
+    color:var(--text);
+    font-size:.9rem;
+    line-height:1.5;
+    margin-bottom:15px;
+}
+
+.price{
+    color:var(--primary);
+    font-size:1.25rem;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
+.btn{
+    display:inline-block;
+    width:100%;
+    text-align:center;
+    padding:12px;
+    background:var(--primary);
+    color:white;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:var(--primary-dark);
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    z-index:9999;
+    justify-content:center;
+    align-items:center;
+}
+
+.lightbox.active{
+    display:flex;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:90%;
+    object-fit:contain;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+    background:#101012;
+    color:#a1a1aa;
+    text-align:center;
+    padding:25px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+    .product-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        flex-direction:column;
+        padding:12px 0;
+        gap:10px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+        font-size:.9rem;
+    }
+
+    .hero{
+        padding:60px 0;
+    }
+
+    .hero h1{
+        font-size:2rem;
+    }
+
+    .product-grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container navbar">
+
+<a href="index.html" class="logo">
+<img src="./logo.png" class="business-logo">
+<span>Bree&Bia Arts and Crafts</span>
+</a>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="engraving.html">Engraving</a>
+<a href="colors.html">Colors</a>
+<a href="https://www.facebook.com/breeandbia">Contact</a>
+</nav>
+
+</div>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+<div class="container">
+
+<div class="badge">
+✨ ENGRAVING COLLECTION
+</div>
+
+<h1>
+Personalized <span>Engraved Products</span>
+</h1>
+
+<p>
+Create something truly personal with our customized engraving service.
+Perfect for gifts, souvenirs, corporate giveaways, special occasions,
+businesses, and personalized keepsakes.
+</p>
+
+</div>
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="products">
+<div class="container">
+
+<div class="product-grid">
+
+
+<!-- PRODUCT 1 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-cup.png"
+alt="Personalized Engraved Glass Cup"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Drinkware
+</div>
+
+<h3 class="product-title">
+Personalized Engraved Glass Cup
+</h3>
+
+<p class="product-desc">
+✨ Customize with a name, text, or simple design.<br>
+🎁 Perfect for gifts and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+10pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 2 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-alcohol.png"
+alt="Engraved Alcohol Container"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Gifts
+</div>
+
+<h3 class="product-title">
+Engraved Alcohol Container
+</h3>
+
+<p class="product-desc">
+🥃 Personalized engraving for names,
+messages, logos, and special occasions.<br>
+🎁 Perfect for gifts and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+15pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 3 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-mirror.png"
+alt="Personalized Engraved Pocket Mirror"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Accessories
+</div>
+
+<h3 class="product-title">
+Personalized Pocket Mirror
+</h3>
+
+<p class="product-desc">
+💖 Add a name, initials, short message,
+or simple design..<br>
+🎁 Perfect for gifts and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+15pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 4 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-coin.png"
+alt="Personalized Coin Purse"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Accessories
+</div>
+
+<h3 class="product-title">
+Engraved Coin Purse
+</h3>
+
+<p class="product-desc">
+🐾 Add your name, contact number,
+or a simple design.<br>
+🎁 Perfect for gifts and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+20pcs for 1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 5 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-passport.png"
+alt="Personalized Engraved Keychain"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Accessories
+</div>
+
+<h3 class="product-title">
+Personalized Passport Holder
+</h3>
+
+<p class="product-desc">
+🔑 Personalized names, initials,
+logos, or short messages.<br>
+🎁 Perfect for gifts and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+15pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 6 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-wooden-clock.png"
+alt="Personalized Engraved Nameplate"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Personalized
+</div>
+
+<h3 class="product-title">
+Personalized Wooden Clock
+</h3>
+
+<p class="product-desc">
+✨ Great for desks, rooms, offices,
+schools, and personalized gifts..<br>
+🎁 Perfect for gifts and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+5pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 7 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-phonestand-coaster.png"
+alt="Corporate Engraved Gift"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Corporate
+</div>
+
+<h3 class="product-title">
+Corporate Engraved Phone Stand and Coaster
+</h3>
+
+<p class="product-desc">
+🏢 Perfect for company giveaways,
+employee gifts, events, and recognition.<br>
+🎁 Perfect for gifts and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+5pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 8 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-bottle-opener.png"
+alt="Personalized Engraved Gift"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Gifts
+</div>
+
+<h3 class="product-title">
+Personalized Engraved Bottle Opener
+</h3>
+
+<p class="product-desc">
+🎁 Make your gift extra special with
+a personalized name, message, or design.<br>
+🎁 Perfect for gifts and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+20pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 7 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-round-calendar.png"
+alt="Corporate Engraved Gift"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Corporate
+</div>
+
+<h3 class="product-title">
+Engraved Round Calendar
+</h3>
+
+<p class="product-desc">
+🏢 Perfect for company giveaways, employee gifts, events, and recognition.<br>
+🎁 Great for special occasions, gifts, and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+4pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<!-- PRODUCT 7 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-round-calendar1.png"
+alt="Corporate Engraved Gift"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Corporate
+</div>
+
+<h3 class="product-title">
+Personalized Round Calendar
+</h3>
+
+<p class="product-desc">
+🏢 Perfect for company giveaways, employee gifts, events, and recognition.<br>
+🎁 Great for special occasions, gifts, and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+4pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+<!-- PRODUCT 5 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-wooden-comb.png"
+alt="Personalized Engraved Keychain"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Accessories
+</div>
+
+<h3 class="product-title">
+Personalized Wooden Comb
+</h3>
+
+<p class="product-desc">
+🔑 Personalized names, initials,
+logos, or short messages.<br>
+🎁 Perfect for gifts and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+10pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 7 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-box-clock.png"
+alt="Corporate Engraved Gift"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Corporate
+</div>
+
+<h3 class="product-title">
+Personalized Wooden Box Clock
+</h3>
+
+<p class="product-desc">
+🏢 Perfect for company giveaways, employee gifts, events, and recognition.<br>
+🎁 Great for special occasions, gifts, and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+5pcs Square for ₱1500<br>
+5pcs Rectangle for ₱2000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+<!-- PRODUCT 8 -->
+
+<div class="product-card">
+
+<div class="product-image">
+<img src="./engraved-wooden-phonestand.png"
+alt="Personalized Engraved Wooden Phonestand"
+onclick="openImage(this.src)">
+</div>
+
+<div class="product-content">
+
+<div class="category">
+Gifts
+</div>
+
+<h3 class="product-title">
+Personalized Engraved Bottle Opener
+</h3>
+
+<p class="product-desc">
+🎁 Make your gift extra special with
+a personalized name, message, or design.<br>
+🎁 Perfect for gifts and everyday use.<br>
+📦 Comes with a box and individual packaging.
+</p>
+
+<div class="price">
+17pcs for ₱1000
+</div>
+
+<a href="https://www.facebook.com/breeandbia" class="btn">
+Inquire Now
+</a>
+
+</div>
+</div>
+
+
+</div>
+</div>
+</section>
+
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox" onclick="closeImage()">
+
+<span class="close">&times;</span>
+
+<img id="fullImage">
+
+</div>
+
+
+<footer>
+© <span id="year"></span> Bree and Bia Arts and Crafts
+</footer>
+
+
+<script>
+
+document.getElementById("year").innerHTML =
+new Date().getFullYear();
+
+
+/* LIGHTBOX */
+
+function openImage(src){
+
+    document.getElementById("fullImage").src = src;
+
+    document.getElementById("lightbox")
+    .classList.add("active");
+
+}
+
+
+function closeImage(){
+
+    document.getElementById("lightbox")
+    .classList.remove("active");
+
+}
+
+
+/* FILTER */
+
+const filterButtons =
+document.querySelectorAll(".filter-btn");
+
+const productCards =
+document.querySelectorAll(".product-card");
+
+const searchInput =
+document.getElementById("searchInput");
+
+
+filterButtons.forEach(button => {
+
+    button.addEventListener("click", function(){
+
+        filterButtons.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+        const filter =
+        this.getAttribute("data-filter");
+
+        filterProducts(filter);
+
+    });
+
+});
+
+
+/* SEARCH */
+
+searchInput.addEventListener("input", function(){
+
+    const search =
+    this.value.toLowerCase();
+
+    const activeFilter =
+    document.querySelector(".filter-btn.active")
+    .getAttribute("data-filter");
+
+
+    productCards.forEach(card => {
+
+        const category =
+        card.querySelector(".category")
+        .textContent
+        .trim();
+
+        const title =
+        card.querySelector(".product-title")
+        .textContent
+        .toLowerCase();
+
+        const description =
+        card.querySelector(".product-desc")
+        .textContent
+        .toLowerCase();
+
+
+        const matchesFilter =
+        activeFilter === "all" ||
+        category === activeFilter;
+
+
+        const matchesSearch =
+        title.includes(search) ||
+        description.includes(search);
+
+
+        if(matchesFilter && matchesSearch){
+
+            card.style.display = "block";
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+});
+
+
+function filterProducts(filter){
+
+    const search =
+    searchInput.value.toLowerCase();
+
+
+    productCards.forEach(card => {
+
+        const category =
+        card.querySelector(".category")
+        .textContent
+        .trim();
+
+        const title =
+        card.querySelector(".product-title")
+        .textContent
+        .toLowerCase();
+
+        const description =
+        card.querySelector(".product-desc")
+        .textContent
+        .toLowerCase();
+
+
+        const matchesFilter =
+        filter === "all" ||
+        category === filter;
+
+
+        const matchesSearch =
+        title.includes(search) ||
+        description.includes(search);
+
+
+        if(matchesFilter && matchesSearch){
+
+            card.style.display = "block";
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* ESCAPE KEY CLOSES LIGHTBOX */
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+
+        closeImage();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+```
